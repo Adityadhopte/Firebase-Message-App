@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.messageapp.model.ChatGroup;
+import com.example.messageapp.model.MessageChatModel;
 import com.example.messageapp.repository.Repository;
 
 import java.util.List;
@@ -15,7 +16,6 @@ import java.util.List;
 public class MyViewmodel extends AndroidViewModel {
 
     Repository repository;
-
     public MyViewmodel(@NonNull Application application) {
         super(application);
         this.repository = new  Repository();
@@ -42,4 +42,15 @@ public class MyViewmodel extends AndroidViewModel {
     public void createNewGroup(String groupName){
         repository.createNewChatGroup(groupName);
     }
+
+
+    public MutableLiveData<List<MessageChatModel>> getMessageLiveData(String GroupName){
+        return repository.getMessageMutableLiveData(GroupName);
+    }
+
+    public void sendMessage(String message, String chatGroup){
+        repository.sendMessage(message,chatGroup);
+
+    }
+
 }
